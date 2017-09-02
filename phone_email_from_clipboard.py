@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+#
 # phone_email_from_clipboard.py - Finds phone numbers and email addresses in clipboard text.
 
 import re
