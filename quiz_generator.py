@@ -62,17 +62,21 @@ test_data = {
 }
 
 questions_and_answers = test_data
+quizzes_number = 14
+lead_zeros = len(str(quizzes_number))
+if not os.path.exists('tests'): os.makedirs('tests')
+if not os.path.exists('answers'): os.makedirs('answers')
 
-# TODO: Add passing number of quiz as parameters.
-# TODO: Add dynamic leading zeroes, so the number of digits always equals max quiz number.
-for quiz_num in range(1, 4):
+for quiz_no in range(1, quizzes_number + 1):
     # Create the quiz and 'answer' key files.
-    if not os.path.exists('tests'):
-        os.makedirs('tests')
-    if not os.path.exists('answers'):
-        os.makedirs('answers')
-    quiz_file = open('tests/capitals_quiz_%02d.txt' % quiz_num, 'w')
-    quiz_answers = open('answers/capitals_quiz_%02d_answers.txt' % quiz_num, 'w')
+    quiz_no = str(quiz_no)
+
+    path_quiz = 'tests' + os.sep + 'capitals_quiz_' + quiz_no.zfill(lead_zeros) + '.txt'
+    quiz_file = open(path_quiz, 'w')
+
+    path_answers = 'answers' + os.sep + 'capitals_quiz_' + quiz_no.zfill(lead_zeros) + \
+                   '_answers.txt'
+    quiz_answers = open(path_answers, 'w')
 
     # Write out the header for the quiz.
     quiz_file.write('''
@@ -81,7 +85,7 @@ Date:
 
                          State Capitals Quiz (Form {})
                               
-    '''.format(quiz_num))
+    '''.format(quiz_no))
 
     questions = list(questions_and_answers.keys())
     random.shuffle(questions)
