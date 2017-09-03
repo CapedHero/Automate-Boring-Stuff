@@ -62,8 +62,9 @@ test_data = {
 }
 
 questions_and_answers = test_data
-quizzes_number = 14
-lead_zeros = len(str(quizzes_number))
+quizzes_num = 14
+questions_num = 50
+lead_zeros = len(str(quizzes_num))
 if not os.path.exists('tests'): os.makedirs('tests')
 if not os.path.exists('answers'): os.makedirs('answers')
 
@@ -90,4 +91,17 @@ Date:
     questions = list(questions_and_answers.keys())
     random.shuffle(questions)
 
-    # TODO: Loop through all 50 states, making a question for each.
+    # Write questions.
+    for question_no in range(1, questions_num + 1):
+        question = questions[question_no - 1]
+        correct_answer = questions_and_answers[question]
+
+        wrong_answers = list(questions_and_answers.values())
+        del wrong_answers[wrong_answers.index(correct_answer)]
+        wrong_answers = random.sample(wrong_answers, 3)
+
+        all_answers = wrong_answers + correct_answer
+        random.shuffle(all_answers)
+
+        # TODO: Write the question and answer options to the quiz file.
+        # TODO: Write the answer key to a file.
