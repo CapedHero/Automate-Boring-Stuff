@@ -7,8 +7,8 @@ import os
 import random
 
 
-# The quiz test data. Keys are states and values are their capitals.x
-test_data = {
+# Quiz test data. Keys are states and values are their capitals.
+usa_capitals = {
     'Alabama': 'Montgomery',
     'Alaska': 'Juneau',
     'Arizona': 'Phoenix',
@@ -61,15 +61,16 @@ test_data = {
     'Wyoming': 'Cheyenne'
 }
 
-questions_and_answers = test_data
+questions_and_answers = usa_capitals
 quizzes_num = 14
 questions_num = 50
+options_num = 4
 lead_zeros = len(str(quizzes_num))
 if not os.path.exists('tests'): os.makedirs('tests')
 if not os.path.exists('answers'): os.makedirs('answers')
 
 for quiz_no in range(1, quizzes_num + 1):
-    # Create the quiz and 'answer' key files.
+    # Create quiz and answer key files.
     quiz_no = str(quiz_no)
 
     path_quiz = 'tests' + os.sep + 'capitals_quiz_' + quiz_no.zfill(lead_zeros) + '.txt'
@@ -77,16 +78,18 @@ for quiz_no in range(1, quizzes_num + 1):
 
     path_answers = 'answers' + os.sep + 'capitals_quiz_' + quiz_no.zfill(lead_zeros) + \
                    '_answers.txt'
-    quiz_answers = open(path_answers, 'w')
+    answers_file = open(path_answers, 'w')
 
     # Write the header.
     quiz_file.write('''
 Name: 
 Date:
 
-                         State Capitals Quiz (Form {})
+
+STATE CAPITALS QUIZ (Form {})
+           
                               
-    '''.format(quiz_no))
+'''.format(quiz_no))
 
     questions = list(questions_and_answers.keys())
     random.shuffle(questions)
