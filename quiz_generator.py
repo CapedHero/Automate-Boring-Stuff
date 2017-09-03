@@ -67,7 +67,7 @@ lead_zeros = len(str(quizzes_number))
 if not os.path.exists('tests'): os.makedirs('tests')
 if not os.path.exists('answers'): os.makedirs('answers')
 
-for quiz_no in range(1, quizzes_number + 1):
+for quiz_no in range(1, quizzes_num + 1):
     # Create the quiz and 'answer' key files.
     quiz_no = str(quiz_no)
 
@@ -78,7 +78,7 @@ for quiz_no in range(1, quizzes_number + 1):
                    '_answers.txt'
     quiz_answers = open(path_answers, 'w')
 
-    # Write out the header for the quiz.
+    # Write the header.
     quiz_file.write('''
 Name: 
 Date:
