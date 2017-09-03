@@ -91,20 +91,27 @@ STATE CAPITALS QUIZ (Form {})
                               
 '''.format(quiz_no))
 
+    # Write questions and answers.
     questions = list(questions_and_answers.keys())
     random.shuffle(questions)
 
-    # Write questions.
     for question_no in range(1, questions_num + 1):
         question = questions[question_no - 1]
         correct_answer = questions_and_answers[question]
 
         wrong_answers = list(questions_and_answers.values())
-        del wrong_answers[wrong_answers.index(correct_answer)]
-        wrong_answers = random.sample(wrong_answers, 3)
+        wrong_answers.remove(correct_answer)
+        wrong_answers = random.sample(wrong_answers, options_num - 1)
 
-        all_answers = wrong_answers + correct_answer
+        all_answers = wrong_answers + [correct_answer]
         random.shuffle(all_answers)
 
-        # TODO: Write the question and answer options to the quiz file.
-        # TODO: Write the answer key to a file.
+        quiz_file.write('%d. What is the capital of %s\n' % (question_no, question))
+        for i in range(options_num):
+            quiz_file.write('\t%s. %s\n' % ('ABCD'[i], all_answers[i]))
+        quiz_file.write('\n')
+        
+        answers_file.write('%s. %s\n' % (question_no, correct_answer))
+
+    quiz_file.close()
+    answers_file.close()
