@@ -70,7 +70,8 @@ if not os.path.exists('answers'): os.makedirs('answers')
 
 for quiz_no in range(1, quizzes_num + 1):
     # Create quiz and answer key files.
-    quiz_name = 'capitals_quiz_' + str(quiz_no).zfill(lead_zeros)
+    quiz_no_padded = str(quiz_no).zfill(lead_zeros)
+    quiz_name = 'capitals_quiz_' + quiz_no_padded
 
     path_quiz = os.path.join('tests', (quiz_name + '.txt'))
     quiz_file = open(path_quiz, 'w')
@@ -84,10 +85,10 @@ Name:
 Date:
 
 
-STATE CAPITALS QUIZ (Form {})
+{} (Form {})
            
                               
-'''.format(quiz_no))
+'''.format('STATE CAPITALS QUIZ', quiz_no_padded))
 
     # Write questions and answers.
     questions = list(questions_and_answers.keys())
@@ -104,7 +105,7 @@ STATE CAPITALS QUIZ (Form {})
         all_answers = wrong_answers + [correct_answer]
         random.shuffle(all_answers)
 
-        quiz_file.write('%d. What is the capital of %s\n' % (question_no, question))
+        quiz_file.write('%d. What is the capital of %s?\n' % (question_no, question))
         for i in range(options_num):
             quiz_file.write('\t%s. %s\n' % ('ABCD'[i], all_answers[i]))
         quiz_file.write('\n')
