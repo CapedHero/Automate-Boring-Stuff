@@ -54,4 +54,4 @@ usa_capitals = {
     'Wyoming': 'Cheyenne'
 }
 
-quiz_gen(usa_capitals)
+quiz_gen(usa_capitals, 'STATE CAPITALS QUIZ')

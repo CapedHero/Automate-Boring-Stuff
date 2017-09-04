@@ -7,7 +7,7 @@ import os
 import random
 
 
-def quiz_gen(data_set, quizzes_num=10, questions_num=10, options_num=4):
+def quiz_gen(data_set, header, quizzes_num=10, questions_num=10, options_num=4):
     lead_zeros = len(str(quizzes_num))
     if not os.path.exists('tests'): os.makedirs('tests')
     if not os.path.exists('answers'): os.makedirs('answers')
@@ -32,7 +32,7 @@ Date:
 {} (Form {})
                
                                   
-'''.format('STATE CAPITALS QUIZ', quiz_no_padded))
+'''.format(header, quiz_no_padded))
 
         # Write questions and answers.
         questions = list(data_set.keys())
