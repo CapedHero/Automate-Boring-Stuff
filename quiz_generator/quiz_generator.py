@@ -7,7 +7,7 @@ import os
 import random
 
 
-def quiz_generator(data_set, quizzes_num=14, questions_num=50, options_num=4):
+def quiz_gen(data_set, quizzes_num=10, questions_num=10, options_num=4):
     lead_zeros = len(str(quizzes_num))
     if not os.path.exists('tests'): os.makedirs('tests')
     if not os.path.exists('answers'): os.makedirs('answers')
@@ -25,14 +25,14 @@ def quiz_generator(data_set, quizzes_num=14, questions_num=50, options_num=4):
 
         # Write the header.
         quiz_file.write('''
-    Name: 
-    Date:
+Name: 
+Date:
 
 
-    {} (Form {})
+{} (Form {})
                
                                   
-    '''.format('STATE CAPITALS QUIZ', quiz_no_padded))
+'''.format('STATE CAPITALS QUIZ', quiz_no_padded))
 
         # Write questions and answers.
         questions = list(data_set.keys())
@@ -58,60 +58,3 @@ def quiz_generator(data_set, quizzes_num=14, questions_num=50, options_num=4):
 
         quiz_file.close()
         answers_file.close()
-
-
-# Quiz test data. Keys are states and values are their capitals.
-usa_capitals = {
-    'Alabama': 'Montgomery',
-    'Alaska': 'Juneau',
-    'Arizona': 'Phoenix',
-    'Arkansas': 'Little Rock',
-    'California': 'Sacramento',
-    'Colorado': 'Denver',
-    'Connecticut': 'Hartford',
-    'Delaware': 'Dover',
-    'Florida': 'Tallahassee',
-    'Georgia': 'Atlanta',
-    'Hawaii': 'Honolulu',
-    'Idaho': 'Boise',
-    'Illinois': 'Springfield',
-    'Indiana': 'Indianapolis',
-    'Iowa': 'Des Moines',
-    'Kansas': 'Topeka',
-    'Kentucky': 'Frankfort',
-    'Louisiana': 'Baton Rouge',
-    'Maine': 'Augusta',
-    'Maryland': 'Annapolis',
-    'Massachusetts': 'Boston',
-    'Michigan': 'Lansing',
-    'Minnesota': 'Saint Paul',
-    'Mississippi': 'Jackson',
-    'Missouri': 'Jefferson City',
-    'Montana': 'Helena',
-    'Nebraska': 'Lincoln',
-    'Nevada': 'Carson City',
-    'New Hampshire': 'Concord',
-    'New Jersey': 'Trenton',
-    'New Mexico': 'Santa Fe',
-    'New York': 'Albany',
-    'North Carolina': 'Raleigh',
-    'North Dakota': 'Bismarck',
-    'Ohio': 'Columbus',
-    'Oklahoma': 'Oklahoma City',
-    'Oregon': 'Salem',
-    'Pennsylvania': 'Harrisburg',
-    'Rhode Island': 'Providence',
-    'South Carolina': 'Columbia',
-    'South Dakota': 'Pierre',
-    'Tennessee': 'Nashville',
-    'Texas': 'Austin',
-    'Utah': 'Salt Lake City',
-    'Vermont': 'Montpelier',
-    'Virginia': 'Richmond',
-    'Washington': 'Olympia',
-    'West Virginia': 'Charleston',
-    'Wisconsin': 'Madison',
-    'Wyoming': 'Cheyenne'
-}
-
-quiz_generator(usa_capitals)
