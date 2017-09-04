@@ -6,7 +6,6 @@
 import os
 import random
 
-
 # Quiz test data. Keys are states and values are their capitals.
 usa_capitals = {
     'Alabama': 'Montgomery',
@@ -71,13 +70,12 @@ if not os.path.exists('answers'): os.makedirs('answers')
 
 for quiz_no in range(1, quizzes_num + 1):
     # Create quiz and answer key files.
-    quiz_no = str(quiz_no)
+    quiz_name = 'capitals_quiz_' + str(quiz_no).zfill(lead_zeros)
 
-    path_quiz = 'tests' + os.sep + 'capitals_quiz_' + quiz_no.zfill(lead_zeros) + '.txt'
+    path_quiz = os.path.join('tests', (quiz_name + '.txt'))
     quiz_file = open(path_quiz, 'w')
 
-    path_answers = 'answers' + os.sep + 'capitals_quiz_' + quiz_no.zfill(lead_zeros) + \
-                   '_answers.txt'
+    path_answers = os.path.join('answers', (quiz_name + '_answers.txt'))
     answers_file = open(path_answers, 'w')
 
     # Write the header.
@@ -110,7 +108,7 @@ STATE CAPITALS QUIZ (Form {})
         for i in range(options_num):
             quiz_file.write('\t%s. %s\n' % ('ABCD'[i], all_answers[i]))
         quiz_file.write('\n')
-        
+
         answers_file.write('%s. %s\n' % (question_no, correct_answer))
 
     quiz_file.close()
